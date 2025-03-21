@@ -1,0 +1,31 @@
+CREATE DATABASE escola;
+
+USE escola;
+
+CREATE TABLE tb_curso (
+  id_curso INT AUTO_INCREMENT PRIMARY KEY,
+  nm_curso VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE tb_turma (
+  id_turma INT AUTO_INCREMENT PRIMARY KEY,
+  nm_disciplina VARCHAR(255) NOT NULL,
+  cd_turma VARCHAR(50) NOT NULL,
+  id_curso INT,
+  FOREIGN KEY (id_curso) REFERENCES tb_curso(id_curso)
+);
+
+CREATE TABLE tb_aluno (
+  id_aluno INT AUTO_INCREMENT PRIMARY KEY,
+  nm_aluno VARCHAR(255) NOT NULL,
+  dt_nascimento DATE NOT NULL,
+  bt_ativo BOOLEAN NOT NULL
+);
+
+CREATE TABLE tb_turma_aluno (
+  id_turma_aluno INT AUTO_INCREMENT PRIMARY KEY,
+  id_turma INT,
+  id_aluno INT,
+  FOREIGN KEY (id_turma) REFERENCES tb_turma(id_turma),
+  FOREIGN KEY (id_aluno) REFERENCES tb_aluno(id_aluno)
+);
